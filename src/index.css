@@ -1,0 +1,17 @@
+* {
+  font-family: Nunito, Roboto, system-ui, Tahoma, sans-serif;
+  box-sizing: border-box;
+  line-height: 22.4px;
+  font-weight: 400px;
+  list-style: none;
+  font-size: 16px;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: #f1f1f1;
+}
+a {
+  text-decoration: none;
+}

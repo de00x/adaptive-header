@@ -1,0 +1,95 @@
+.headerWrapper {
+  padding: 0rem 10rem;
+  height: 6rem;
+  background-color: #fff;
+}
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1920px;
+  height: 100%;
+  margin: 0rem auto;
+  padding: 0rem 3rem;
+}
+.headerLogo {
+  padding: 0.3rem;
+  font-weight: 600;
+  font-size: 18px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.headerCurrLocation {
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding: 0.3rem;
+  &:hover {
+    cursor: pointer;
+    .locationSVGContainer {
+      background-color: rgb(241, 236, 236);
+    }
+  }
+}
+.locationSVGContainer {
+  display: flex;
+  align-items: center;
+  margin-right: 0.7rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 3rem;
+  border: 1px solid rgb(241, 236, 236);
+  transition: 0.15s background-color ease-in-out;
+}
+.headerSearchContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 40rem;
+  & input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 3rem;
+    padding: 0rem 3.5rem;
+    border-radius: 3rem;
+    border: 2px solid #0dcaf000;
+    background-color: rgb(241, 236, 236);
+    transition: 0.2s border-color ease-in-out, 0.2s background-color ease-in-out;
+    &:focus {
+      background-color: #fff;
+      border: 2px solid #0dcaf0;
+    }
+    &::placeholder {
+      text-align: center;
+      font-weight: 300;
+      color: rgb(161, 157, 157);
+    }
+  }
+}
+.inputSearchSVG,
+.inputCloseSVG {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  fill: rgb(161, 157, 157);
+  & svg {
+    width: 100%;
+  }
+}
+.inputSearchSVG {
+  left: 0.5rem;
+  width: 40px;
+}
+.inputCloseSVG {
+  right: 0.5rem;
+  width: 30px;
+  & svg {
+    transition: 0.1s fill ease-in-out;
+  }
+  & svg:hover {
+    cursor: pointer;
+    fill: rgb(139, 135, 135);
+  }
+}
