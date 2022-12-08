@@ -21,9 +21,12 @@
     cursor: pointer;
   }
 }
-.headerCurrLocation {
+.headerCurrLocationWrapper {
   display: flex;
   position: relative;
+}
+.headerCurrLocation {
+  display: flex;
   align-items: center;
   padding: 0.3rem;
   &:hover {
@@ -32,6 +35,9 @@
       background-color: rgb(241, 236, 236);
     }
   }
+}
+.locationSVGContainerActive {
+  background-color: rgb(241, 236, 236);
 }
 .locationSVGContainer {
   display: flex;
