@@ -1,36 +1,63 @@
 import { ReactComponent as Location } from './img/location.svg'
-import { ReactComponent as Search } from './img/search.svg'
-import { ReactComponent as Close } from './img/close.svg'
-import { FC, useState } from 'react'
+import { PersonalBadge } from '../../components/PersonalBadge'
 import { ModalCountry } from '../../components/ModalCountry'
+import { ReactComponent as Search } from './img/search.svg'
+import { ReactComponent as Heart } from './img/heart.svg'
+import { ReactComponent as Close } from './img/close.svg'
 import { CSSTransition } from 'react-transition-group'
-import './index.css'
+import { FC, useRef, useState } from 'react'
+import './styles/index.css'
 import cn from 'classnames'
-import styles from './Header.module.scss'
+import styles from './styles/Header.module.scss'
 
 export const Header: FC = (): JSX.Element => {
   const [flyModalCountry, setFlyModalCountry] = useState(false)
+  const [flyModalBadge, setFlyModalBadge] = useState(false)
   const [searchData, setSearchData] = useState({
     search: '',
   })
+  const textCurrLocationRef = useRef(null)
+  /// functions ///
+  const openModalBadge = (): void => {
+    setFlyModalBadge(true)
+  }
+  const closeModalBadge = (): void => {
+    if (flyModalBadge) setFlyModalBadge(false)
+  }
+  /// functions ///
 
+  /// styles ///
+  const stylesLocationSVGContainer = cn(styles.locationSVGContainer, {
+    [styles.locationSVGContainerActive]: flyModalCountry,
+  })
+  /// styles ///
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.headerContainer}>
-        <div className={styles.headerLogo}>by de00x</div>
-        <div className={styles.headerCurrLocationWrapper}>
+        <div className={styles.headerLogoWrapper} onMouseLeave={closeModalBadge}>
+          <div className={styles.headerLogo} onMouseOver={openModalBadge}>
+            by de00x
+          </div>
+          <CSSTransition
+            in={flyModalBadge}
+            classNames="openModalCountry"
+            timeout={500}
+            unmountOnExit
+          >
+            <PersonalBadge />
+          </CSSTransition>
+        </div>
+        <div className={styles.headerCurrLocationWrapper} ref={textCurrLocationRef}>
           <div
             onClick={() => setFlyModalCountry(!flyModalCountry)}
             className={styles.headerCurrLocation}
           >
-            <div
-              className={cn(styles.locationSVGContainer, {
-                [styles.locationSVGContainerActive]: flyModalCountry,
-              })}
-            >
+            <div className={stylesLocationSVGContainer}>
               <Location />
             </div>
-            Любой регион
+            {localStorage.getItem('location') === null || localStorage.getItem('location') === ''
+              ? 'Любой регион'
+              : localStorage.getItem('location')}
           </div>
           <CSSTransition
             in={flyModalCountry}
@@ -38,7 +65,10 @@ export const Header: FC = (): JSX.Element => {
             timeout={300}
             unmountOnExit
           >
-            <ModalCountry />
+            <ModalCountry
+              setFlyModalCountry={setFlyModalCountry}
+              textCurrLocationRef={textCurrLocationRef}
+            />
           </CSSTransition>
         </div>
         <div className={styles.headerSearchContainer}>
@@ -56,8 +86,10 @@ export const Header: FC = (): JSX.Element => {
             </div>
           )}
         </div>
-        <div className={styles.headerHeart}>Heart</div>
-        <div className={styles.headerPArea}>Parea</div>
+        <div className={styles.headerHeart}>
+          <Heart /> 0
+        </div>
+        <div className={styles.headerPArea}>Войти</div>
       </div>
     </div>
   )
