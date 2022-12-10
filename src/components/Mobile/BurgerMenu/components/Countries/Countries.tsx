@@ -1,53 +1,52 @@
-import { IAllCountries, ICities, IModalCountryProps } from './types/MCountry.types'
+import { IAllCountries, ICities, ICountriesProps } from './types/Countries.types'
 import { ReactComponent as Close } from './img/close.svg'
 import { CSSTransition } from 'react-transition-group'
 import { FC, useRef, useState } from 'react'
-import './styles/index.css'
-import Spinner from 'react-bootstrap/Spinner'
-import styles from './styles/ModalCountry.module.scss'
+import Spinner from 'react-bootstrap/esm/Spinner'
+import styles from './styles/Countries.module.scss'
 import MCountryService from './services/MCountry.service'
 import MCountryControllers from './services/MCountryControllers'
 
-export const ModalCountry: FC<IModalCountryProps> = ({
-  setFlyModalCountry,
-  textCurrLocationRef,
+export const Countries: FC<ICountriesProps> = ({
+  setOpenCountries,
+  bmCountriesContainerRef,
 }): JSX.Element => {
   const [allCountries, setAllCountries] = useState<IAllCountries[]>([])
-  const [currentCheckCity, setCurrentCheckCity] = useState('')
   const [skeletonSpinner, setSkeletonSpinner] = useState(true)
+  const [currentCheckCity, setCurrentCheckCity] = useState('')
   const [dataICountry, setDataICountry] = useState({
     countryData: '',
   })
-  const modalCurrCountryRef = useRef(null)
+  const countriesWrapperRef = useRef(null)
 
   /// functions ///
   const { successRespCountries, currentLocation, newCurrentLocation } = MCountryControllers({
-    setAllCountries,
-    currentCheckCity,
-    setSkeletonSpinner,
-    setFlyModalCountry,
     setCurrentCheckCity,
+    setSkeletonSpinner,
+    setOpenCountries,
+    currentCheckCity,
+    setAllCountries,
   })
   /// functions ///
 
   /// useEffects ///
   MCountryService.GetAllCountries(successRespCountries)
-  MCountryService.GetClickOutsideModal(modalCurrCountryRef, textCurrLocationRef, setFlyModalCountry)
+  MCountryService.GetClickOutsideBurger(
+    bmCountriesContainerRef,
+    countriesWrapperRef,
+    setOpenCountries
+  )
   /// useEffects ///
 
   return (
-    <div className={styles.mCountryContainer} ref={modalCurrCountryRef}>
-      <div className={styles.countryInput}>
+    <div className={styles.countriesWrapper} ref={countriesWrapperRef}>
+      <Close className={styles.countriesCloseBtn} onClick={() => setOpenCountries(false)} />
+      <div className={styles.inputContainer}>
         <input
           value={dataICountry.countryData}
           onChange={(e) => setDataICountry({ ...dataICountry, countryData: e.target.value })}
           placeholder="Регион, населенный пункт, край"
         />
-        {dataICountry.countryData.length !== 0 && (
-          <div className={styles.countryICloseSVG}>
-            <Close />
-          </div>
-        )}
       </div>
       <CSSTransition
         in={currentCheckCity.length !== 0}
@@ -92,7 +91,7 @@ export const ModalCountry: FC<IModalCountryProps> = ({
             ))}
         </div>
       )}
-      <div className={styles.horizontalWhiteLine} />
+      <div className={styles.horizontalWhiteLine}></div>
       <button className={styles.countryBtnSave} onClick={newCurrentLocation}>
         Сохранить
       </button>

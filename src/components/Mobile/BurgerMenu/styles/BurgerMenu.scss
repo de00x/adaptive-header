@@ -1,0 +1,83 @@
+.offcanvas {
+  width: 18rem !important;
+  max-width: 18rem !important;
+  border: none !important;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+.openBurgerBtn {
+  cursor: pointer;
+}
+.burgerMenuWrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+.bMenuCloseBtn {
+  display: flex;
+  position: absolute;
+  right: -2rem;
+  width: 30px;
+  fill: #fff;
+  cursor: pointer;
+  transition: 0.15s fill ease-in-out;
+  &:hover {
+    fill: rgb(224, 221, 221);
+  }
+}
+.burgerMenuContainer {
+  padding: 2rem 1rem;
+}
+.bmBtnLogin {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & button {
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.6rem 2rem;
+    font-weight: 500;
+    color: #fff;
+    background-color: #0656b4;
+    transition: 0.15s background-color ease-in-out;
+    &:hover {
+      background-color: #1066c9;
+    }
+  }
+}
+.bmCurrentLocationContainer {
+  display: flex;
+  width: 100%;
+  height: 4rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  transition: 0.15s background-color ease-in-out;
+  &:hover {
+    background-color: rgb(237, 234, 234);
+    cursor: pointer;
+  }
+}
+.bmCurrentLocationTextContainer {
+  width: 80%;
+}
+.bmCurrentLocationText {
+  font-weight: 300;
+  color: rgb(175, 172, 172);
+}
+.bmCurrentLocationSVGContainer {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bmCurrentLocationSVG {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid rgb(175, 172, 172);
+}

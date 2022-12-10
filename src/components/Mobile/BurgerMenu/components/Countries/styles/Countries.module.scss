@@ -1,0 +1,124 @@
+.countriesWrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  margin: 1rem 0rem;
+  border-radius: 0.5rem;
+  background-color: rgb(237, 236, 236);
+}
+.countriesCloseBtn {
+  position: absolute;
+  right: 0;
+  fill: rgb(214, 209, 209);
+  cursor: pointer;
+  transition: 0.15s fill ease-in-out;
+  &:hover {
+    fill: rgb(198, 193, 193);
+  }
+}
+.inputContainer {
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  & input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 3rem;
+    padding: 0rem 2rem;
+    border-radius: 3rem;
+    border: 2px solid #0dcaf000;
+    background-color: rgb(228, 223, 223);
+    transition: 0.2s border-color ease-in-out, 0.2s background-color ease-in-out;
+    &:focus {
+      background-color: #fff;
+      border: 2px solid #0dcaf0;
+    }
+    &::placeholder {
+      text-align: center;
+      font-weight: 300;
+      color: rgb(161, 157, 157);
+    }
+  }
+}
+.currentLocationContainer {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  padding-left: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+.currentLocation {
+  max-width: 14rem;
+  height: 2.7rem;
+  padding: 0rem 0.8rem;
+  border-radius: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  background-color: #1065c5;
+  & svg {
+    width: 30px;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    transition: 0.15s fill ease-in-out;
+    fill: #fff;
+    &:hover {
+      fill: rgb(220, 216, 216);
+    }
+  }
+  & div {
+    font-size: 14px;
+  }
+}
+.countriesContainer {
+  width: 100%;
+  max-height: 10rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.cities {
+  padding: 0rem 1.5rem;
+  height: 3rem;
+  transition: 0.05s background-color ease-in-out;
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(246, 240, 240);
+  }
+}
+.countries {
+  font-size: 14px;
+  color: rgb(182, 178, 178);
+}
+.horizontalWhiteLine {
+  width: 100%;
+  height: 0.5rem;
+}
+.spinnerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+}
+.countryBtnSave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 3rem;
+  border: none;
+  font-weight: 600;
+  font-size: 18px;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  color: #fff;
+  background-color: #0656b4;
+  transition: 0.1s background-color ease-in-out;
+  &:hover {
+    cursor: pointer;
+    background-color: #1066c9;
+  }
+}

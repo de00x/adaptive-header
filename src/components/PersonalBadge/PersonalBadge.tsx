@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import styles from './PersBadge.module.scss'
+import styles from './styles/PersBadge.module.scss'
 
 export const PersonalBadge: FC = (): JSX.Element => {
   return (

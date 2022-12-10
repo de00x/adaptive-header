@@ -1,14 +1,15 @@
 import { ReactComponent as Location } from './img/location.svg'
-import { PersonalBadge } from '../../components/PersonalBadge'
-import { ModalCountry } from '../../components/ModalCountry'
 import { ReactComponent as Search } from './img/search.svg'
 import { ReactComponent as Heart } from './img/heart.svg'
 import { ReactComponent as Close } from './img/close.svg'
 import { CSSTransition } from 'react-transition-group'
+import { PersonalBadge } from '../../PersonalBadge'
+import { ModalCountry } from '../ModalCountry'
 import { FC, useRef, useState } from 'react'
-import './styles/index.css'
-import cn from 'classnames'
+import './styles/Header.scss'
+
 import styles from './styles/Header.module.scss'
+import stylesController from './styles/stylesController'
 
 export const Header: FC = (): JSX.Element => {
   const [flyModalCountry, setFlyModalCountry] = useState(false)
@@ -18,25 +19,14 @@ export const Header: FC = (): JSX.Element => {
   })
   const textCurrLocationRef = useRef(null)
 
-  /// functions ///
-  const openModalBadge = (): void => {
-    setFlyModalBadge(true)
-  }
-  const closeModalBadge = (): void => {
-    if (flyModalBadge) setFlyModalBadge(false)
-  }
-  /// functions ///
-
   /// styles ///
-  const stylesLocationSVGContainer = cn(styles.locationSVGContainer, {
-    [styles.locationSVGContainerActive]: flyModalCountry,
-  })
+  const { stylesLocationSVGContainer } = stylesController({ flyModalCountry })
   /// styles ///
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.headerContainer}>
-        <div className={styles.headerLogoWrapper} onMouseLeave={closeModalBadge}>
-          <div className={styles.headerLogo} onMouseOver={openModalBadge}>
+        <div className={styles.headerLogoWrapper} onMouseLeave={() => setFlyModalBadge(false)}>
+          <div className={styles.headerLogo} onMouseOver={() => setFlyModalBadge(true)}>
             by de00x
           </div>
           <CSSTransition
