@@ -17,6 +17,7 @@ export const Header: FC = (): JSX.Element => {
     search: '',
   })
   const textCurrLocationRef = useRef(null)
+
   /// functions ///
   const openModalBadge = (): void => {
     setFlyModalBadge(true)

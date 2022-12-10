@@ -21,6 +21,7 @@
     }
   }
 }
+///Media///
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -32,3 +33,9 @@
     background-position: 0% 50%;
   }
 }
+.personalBadgeContainer {
+  @media (max-width: 1500px) {
+    left: 0;
+  }
+}
+///Media///
